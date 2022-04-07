@@ -1,0 +1,1 @@
+export const SITE_ROUTES = ['/', 'plans', 'business', 'company', 'signup', 'signin', 'contact'];
