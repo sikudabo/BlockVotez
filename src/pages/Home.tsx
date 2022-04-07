@@ -9,6 +9,10 @@ const HomePageContainer = styled.div`
     margin: 0;
 `;
 
+const WhatWeDoSection = styled.div`
+
+`
+
 export default function Home() {
     return (
         <HomePageContainer>
