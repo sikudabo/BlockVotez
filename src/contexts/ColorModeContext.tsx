@@ -7,7 +7,7 @@ import React, { createContext, useContext, useState } from 'react';
  */
 export type ColorModeStateContextType = {
     mode: 'light' | 'dark';
-}
+};
 
 export type ColorModeUpdateContextType = {
     setMode: React.Dispatch<React.SetStateAction<"light" | "dark">> | null;
