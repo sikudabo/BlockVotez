@@ -1,32 +1,31 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
 contract CoinExample {
   address public minter;
   mapping (address => uint) public balances;
-
-  event Sent(address from, address to, uint amount);
   constructor() public {
     minter = msg.sender;
   }
 
+  event Sent(address from, address to, uint amount);
+
   function mint(address receiver, uint amount) public {
-    require(msg.sender == minter);
+    require(msg.sender == minter, "Only the Minter can mine coins");
     balances[receiver] += amount;
   }
 
-  error InsufficientBalance(uint requested, uint available);
-
-  function send(address receiver, uint amount) public {
+  function send(address from, address to, uint amount) public {
     if (amount > balances[msg.sender]) {
-      revert InsufficientBalances({
-        requested: amount,
-        available: balances[msg.sender],
-      });
+      revert("Insufficient Balance");
     }
 
-    balances[msg.sender] -= amount;
-    balances[receiver] += amount;
-    emit Sent(msg.sender, receiver, amount);
+    balances[from] -= amount;
+    balances[to] += amount;
+    emit Sent(from, to, amount);
+  }
+
+  function getBalance() public view returns (uint) {
+    return balances[msg.sender];
   }
 }

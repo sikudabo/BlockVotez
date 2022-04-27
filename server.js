@@ -15,9 +15,12 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const history = require('connect-history-api-fallback');
 const serveStatic = require('serve-static');
+const Eth = require('web3-eth');
+const eth = new Eth(Eth.givenProvider || 'http://localhost:7545');
+
+console.log('The accounts are:', eth.getAccounts());
 // Disabled because startMongo is only to start the mongoose connection
 // eslint-disable-next-line no-unused-vars
-const { startMongo } = require('./backend-utils');
 
 // Set application locals
 app.set('appName', 'BlockVotez');
